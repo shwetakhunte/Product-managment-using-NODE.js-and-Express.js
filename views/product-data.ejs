@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('cdn.ejs')%>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="bg-dark text-warning text-center mb-3 p-3">
+                    <h1>Product Data</h1>
+                </div>
+                <div>
+                    <button class="btn btn-primary mb-3"><a href="/add-product" class="text-white text-decoration-none">Add New Product</a></button>
+                </div>
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                    <% data.map((val,index) => { %>
+                    <tr>
+                       <td><%= index + 1 %></td>
+                       <td><%= val.name %></td>
+                       <td><%= val.price %></td>
+                       <td><%= val.description %></td>
+                       <td>
+                        <img src="/uploads/<%= val.image %>" width="100" height="100" alt="Product Image">
+                    </td>
+                    <td><a href="/delete/<%-val.id%>" onclick="return confirm('Are You Sure ?')"><i class="fa fa-trash" style="color:red;font-weight: bold;"></i></a></td>
+                <td><a href="/edit/<%-val.id%>"><i class="fa fa-edit" style="color:green;font-weight: bold;"></i></a></td>
+                    </tr>
+
+                    <% })%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+    
+</body>
+</html>

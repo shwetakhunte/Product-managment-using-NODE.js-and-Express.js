@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <%- include('cdn.ejs') %>  <!-- Include Bootstrap & jQuery -->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bg-dark text-warning text-center mb-3 p-3">
+                    <h1>Update Product</h1>
+                </div>
+                <form method="post" action="/updateform" enctype="multipart/form-data">
+                    
+                    <input type="hidden" name="id" id="id" class="form-control" value="<%= data.id %>"/>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Product Name:</label>
+                        <input type="text" name="name" id="name" class="form-control" value="<%= data.name %>" required/>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Product Price:</label>
+                        <input type="text" name="price" id="price" class="form-control" value="<%= data.price %>" required/>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Product Description:</label>
+                        <textarea name="description" id="description" class="form-control" rows="4"><%= data.description %></textarea>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Product Image:</label>
+                        <input type="file" name="image" id="image" class="form-control"/>
+                    </div>
+
+                    
+                    <% if (data.image) { %>
+                        <div class="mb-3">
+                            <label>Current Image:</label><br>
+                            <img src="/uploads/<%= data.image %>" width="150" height="150" alt="Product Image">
+                        </div>
+                    <% } %>
+    
+                    <button type="submit" class="btn btn-primary">Update Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
